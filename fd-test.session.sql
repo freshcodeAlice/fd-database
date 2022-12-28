@@ -39,6 +39,12 @@ ADD COLUMN height numeric(3,2);
 ALTER TABLE users
 ADD CONSTRAINT "too_high_user" CHECK (height < 4.0);
 
+DELETE FROM users
+WHERE id > 10;
+
+ALTER TABLE users
+DROP CONSTRAINT users_email_key;
+
 
 /*
 Додати юзерам нову колонку - вагу. Вага не має бути менше 0
@@ -53,6 +59,8 @@ ADD COLUMN weight numeric(5, 2) CHECK (weight > 0);
 ALTER TABLE users
 ADD CONSTRAINT "too_early_birthday" CHECK (birthday > '1990-01-01');
 
+ALTER TABLE users
+DROP CONSTRAINT "too_early_birthday";
 
 //table_field_check
 //table_field_pkey
@@ -355,7 +363,8 @@ WHERE birthday > '1992-01-01';
 
 
 
-
+ALTER TABLE users
+ADD COLUMN is_subscribe boolean;
 
 
 /*
@@ -388,4 +397,3 @@ WHERE birthday > '1992-01-01';
 
 */
 
-SELECT * FROM users;
