@@ -9,6 +9,11 @@ class Phone {
 
         return rows;
     }
+
+
+    static async findAll () {
+        return await this._client.query(`SELECT * FROM ${this._tableName}`);
+    }
 }
 
 

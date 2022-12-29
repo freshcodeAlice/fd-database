@@ -10,7 +10,8 @@ async function start() {
 
 //    const {rows} = await User.bulkCreate(usersArray);
 const {rows: users} = await User.findAll();
-    const phones = await Phone.bulkCreate(generatePhones(100)); 
+    // const phones = await Phone.bulkCreate(generatePhones(100)); 
+    const phones = await Phone.findAll();
     const orders = await Order.bulkCreate(users, phones);
    await client.end();
 }
