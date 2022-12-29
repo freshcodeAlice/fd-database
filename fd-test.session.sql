@@ -46,6 +46,16 @@ ALTER TABLE users
 DROP CONSTRAINT users_email_key;
 
 
+ALTER TABLE products
+ADD COLUMN model varchar(200);
+
+ALTER TABLE products
+RENAME COLUMN name TO brand;
+
+DELETE FROM orders_to_products;
+
+DELETE FROM products;
+
 /*
 Додати юзерам нову колонку - вагу. Вага не має бути менше 0
 
@@ -397,3 +407,6 @@ ADD COLUMN is_subscribe boolean;
 
 */
 
+SELECT * FROM chats;
+
+INSERT INTO chats (name, owner_id) VALUES ('second', 1) RETURNING *;
