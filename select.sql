@@ -369,3 +369,81 @@ FROM products;
 --Кількість проданих телефонів всього магазину
 SELECT sum(quantity)
 FROM orders_to_products;
+
+
+
+
+--//////////////////Сортування, фільтрація/////////////////////////////
+
+---Дізнатись, якого бренду телефонів залишилось меньше всього на складі
+SELECT min(quantity), brand
+FROM products
+GROUP BY brand;
+
+
+
+
+/*
+Відсортувати юзерів за айді
+
+ORDER BY (за яким полем сортуємо) (принцип сортування: за більшенням ASC / за зменшенням DESC)
+
+
+*/
+
+SELECT * FROM users
+ORDER BY id ASC;
+
+
+SELECT * FROM users
+ORDER BY first_name ASC;
+
+------
+
+SELECT * FROM users
+ORDER BY height, birthday;
+
+
+
+---------------------
+
+
+SELECT *
+FROM products
+ORDER BY quantity;
+
+
+
+---------------
+
+/*
+Топ-5 найдорожчих телефонів
+
+*/
+
+
+SELECT *
+FROM products
+ORDER BY price DESC
+LIMIT 5;
+
+
+
+/*
+1. Відсортуйте користувачів за кількістю повних років (не дата народження, а кількість років), і для тих, хто має однаковий вік - за алфавітом у зворотньому порядку
+
+2. Відсортуйте по ціні від меншого до більшого
+
+
+*/
+
+
+---2
+SELECT *
+FROM products
+ORDER BY price ASC;
+
+
+---1
+SELECT *, extract('years' from age(birthday)) FROM users
+ORDER BY extract('years' from age(birthday)), first_name DESC;
